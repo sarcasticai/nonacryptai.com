@@ -1,0 +1,106 @@
+[
+  {
+    "id": "predictive-analytics",
+    "title": "Predictive Analytics Engine",
+    "shortDescription": "Forecast trends and customer behavior with our advanced machine learning models.",
+    "fullDescription": "Our Predictive Analytics Engine processes vast amounts of historical data to uncover hidden patterns and forecast future trends. Employs deep learning and time-series analysis to give your business a competitive edge, allowing proactive rather than reactive strategies. Seamlessly integrates with your existing data pipelines.",
+    "icon": "BrainCircuit",
+    "features": [
+      "Real-time data processing",
+      "Automated anomaly detection",
+      "Customizable forecasting dashboards",
+      "API integration for enterprise systems"
+    ]
+  },
+  {
+    "id": "nlp-automation",
+    "title": "NLP Workflow Automation",
+    "shortDescription": "Automate document processing and customer interactions using advanced Natural Language Processing.",
+    "fullDescription": "Transform unstructured text into structured, actionable data. From automated customer support routing to extracting crucial data points from legal documents, our NLP solutions streamline manual workflows and reduce human error.",
+    "icon": "MessageSquareText",
+    "features": [
+      "Multi-language support",
+      "Sentiment analysis",
+      "Intelligent text extraction",
+      "Automated ticket routing"
+    ]
+  },
+  {
+    "id": "computer-vision",
+    "title": "Spatial & Computer Vision API",
+    "shortDescription": "Enable your applications to see and understand the physical world in real-time.",
+    "fullDescription": "Harness the power of neural networks for precise image and video analysis. Whether it's quality control on a manufacturing line, autonomous navigation, or facial recognition for security, our Vision API delivers remarkable accuracy at high speeds.",
+    "icon": "ScanEye",
+    "features": [
+      "Object detection & tracking",
+      "Facial recognition",
+      "Real-time video stream analysis",
+      "Edge-deployment capabilities"
+    ]
+  },
+  {
+    "id": "business-automation",
+    "title": "Business Automation Service",
+    "shortDescription": "Streamline dynamic operations and corporate logistics with direct AI-agent decision trees.",
+    "fullDescription": "Our Business Automation framework utilizes multi-agent cognitive models to orchestrate high-leverage organizational processes. From automated legal review pipelines and cross-department invoice reconciliation to real-time risk intelligence, our system eliminates operational friction and drives precision workflows without human bottlenecking.",
+    "icon": "Network",
+    "features": [
+      "Autonomous multi-agent workflows",
+      "Enterprise CRM & ERP integration",
+      "Automated decision arbitration",
+      "Dynamic workflow load balancing"
+    ]
+  },
+  {
+    "id": "industry-automation",
+    "title": "Industry Automation Module",
+    "shortDescription": "Synchronize factory workloads, robotics telemetry, and high-frequency edge execution pools.",
+    "fullDescription": "Deploy low-latency local intelligence at the mechanical edge. Empower autonomous machines, sensor array telemetry grids, and logistics robots with continuous decision capabilities. This service combines robust operational integration with extreme deterministic performance, operating even under complete network segregation.",
+    "icon": "Cpu",
+    "features": [
+      "Deterministic sub-millisecond edge loops",
+      "Industrial SCADA & PLC integration protocols",
+      "Rotational machinery predictive telemetry",
+      "Air-gapped secure edge runtime"
+    ]
+  },
+  {
+    "id": "data-management",
+    "title": "Data Management Service",
+    "shortDescription": "Clean, structure, version, and orchestrate high-throughput corporate datasets for ML readiness.",
+    "fullDescription": "High-fidelity machine learning demands clean, organized, and versioned datasets. Our Data Management Service provides end-to-end data pipelines, real-time feature stores, automated synthetic labeling, and robust ETL pipelines constructed specifically for secure, scale-ready corporate compliance and multi-tenant isolation.",
+    "icon": "Database",
+    "features": [
+      "Secure regional feature storefronts",
+      "Automated data cleaning and curation",
+      "GDPR/CCPA compliant data tracking",
+      "High-throughput vector embedding sync"
+    ]
+  },
+  {
+    "id": "custom-ai-development",
+    "title": "Custom AI Model Development",
+    "shortDescription": "Custom design, fine-tune, and align proprietary neural architectures for specialized tasks.",
+    "fullDescription": "Go beyond off-the-shelf wrappers. We construct, calibrate, and deploy customized neural network models tailored for your exact operational domain. From custom adapter training and domain-specific tokenizers to native parameter-efficient fine-tuning (PEFT) and reinforcement learning optimization, we engineer models that deliver true proprietary IP.",
+    "icon": "Code2",
+    "features": [
+      "Domain-specific tokenizer training",
+      "Parameter-efficient fine-tuning (PEFT)",
+      "Proprietary weights and weights ownership",
+      "Optimized model compilation & quantization"
+    ]
+  },
+  {
+    "id": "business-ai-audit",
+    "title": "Business AI Audit & Compliance",
+    "shortDescription": "Rigorous technical audits, ethical evaluation, and system compliance reviews backed by a direct Professional Helpline.",
+    "fullDescription": "Validate the security, transparency, bias profiles, and operational parameters of your AI architectures. Our complete auditing suite aligns artificial intelligence products with global policies (ISO 42001, SOC 2, HIPAA) while measuring model degradation over time. This high-tier service features an exclusive, direct Professional Hotline (+1-415-555-0199) enabling instant real-time consultation with principal auditing engineers.",
+    "icon": "ClipboardCheck",
+    "features": [
+      "Exclusive Professional Hotline (+1-415-555-0199) for immediate live advisory",
+      "ISO 42001 & SOC 2 compliance verification reports",
+      "Comprehensive drift, latency, and bias evaluation",
+      "Infrastructure level efficiency & cost leakage audit"
+    ]
+  }
+]

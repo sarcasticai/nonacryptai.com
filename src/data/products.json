@@ -1,0 +1,30 @@
+[
+  {
+    "id": "defect-manage-ai",
+    "title": "Industrial Defect Management AI",
+    "shortDescription": "High-precision real-time vision classification for high-speed manufacturing assembly lines.",
+    "fullDescription": "An end-to-end vision inspection computer system engineered for extreme-accuracy surface anomaly, micro-fracture, and measurement drift detection. Operating at up to 240 frames per second on localized edge hardware, it detects sub-millimeter variances in casting, soldering, or printing, immediately triggering PLC discard triggers.",
+    "icon": "Layers",
+    "price": "Starts at $1,499/month",
+    "features": [
+      "Sub-millimeter micro-fracture detection",
+      "240 FPS high-speed camera stream processing",
+      "Automatic PLC discard integration trigger",
+      "Over-the-air quality analytics reporting"
+    ]
+  },
+  {
+    "id": "threat-control-ai",
+    "title": "Intelligent Threat Control AI",
+    "shortDescription": "Next-generation proactive security perimeter threat classification and physical deterrence.",
+    "fullDescription": "Our Intelligent Threat Control suite combines active multi-spectral camera stream monitoring, audio acoustics analytics, and spatial radar trackers to identify, classify, and track perimeter breaches in real-time. Driven by deep cognitive vision models, it separates harmless motion from tactical intrusions, issuing instant security protocols.",
+    "icon": "ShieldCheck",
+    "price": "Custom Enterprise SLAs",
+    "features": [
+      "Multi-spectral infrared camera mapping",
+      "Acoustic weapon & physical impact classification",
+      "Tactical path tracking & speed velocity vectoring",
+      "Automatic threat classification & direct response"
+    ]
+  }
+]

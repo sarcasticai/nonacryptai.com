@@ -1,0 +1,6 @@
+{
+  "name": "NonaCrypt - Intelligence, Engineered",
+  "description": "Enterprise-grade scalable AI services platform featuring predictive analytics, NLP, and computer vision integration.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
