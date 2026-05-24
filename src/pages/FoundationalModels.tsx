@@ -101,8 +101,8 @@ export default function FoundationalModels() {
                <p className="text-slate-400 text-sm">Every model is aligned by default for harmlessness and enterprise readiness.</p>
              </div>
           </div>
-          <Link to="/security" className="whitespace-nowrap px-6 py-2.5 rounded-full border border-slate-700 bg-slate-800 text-sm font-bold text-white hover:bg-slate-700 transition-all">
-            Read Security Protocol
+          <Link to="/safety" className="whitespace-nowrap px-6 py-2.5 rounded-full border border-slate-700 bg-slate-800 text-sm font-bold text-white hover:bg-slate-700 transition-all">
+            Read Safety Protocol
           </Link>
         </div>
       </div>

@@ -203,16 +203,6 @@ export default function Layout() {
             >
               Pricing
             </a>
-
-            {/* Sovereignty & Security link */}
-            <Link
-              to="/security"
-              className={`text-sm font-bold tracking-wide transition-colors ${
-                location.pathname === '/security' ? 'text-white' : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              Sovereignty
-            </Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
@@ -386,17 +376,6 @@ export default function Layout() {
                   Pricing
                 </a>
 
-                {/* Direct Page: Sovereignty & Security */}
-                <Link
-                  to="/security"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block rounded-xl px-4 py-3 text-base font-extrabold transition-colors ${
-                    location.pathname === '/security' ? 'bg-slate-900 text-white' : 'text-slate-400 hover:bg-white/5 hover:text-white'
-                  }`}
-                >
-                  Sovereignty
-                </Link>
-
                 <Link
                   to="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -530,7 +509,6 @@ export default function Layout() {
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-slate-500">
                <Link to="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
                <Link to="/terms" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
-               <Link to="/security" className="hover:text-slate-300 transition-colors">Security & Keys</Link>
                <Link to="/safety" className="hover:text-slate-300 transition-colors">AI Safety & Alignment</Link>
                <Link to="/sla" className="hover:text-slate-300 transition-colors">Service SLAs</Link>
                <Link to="/status" className="flex items-center gap-2 hover:text-slate-300 transition-colors">

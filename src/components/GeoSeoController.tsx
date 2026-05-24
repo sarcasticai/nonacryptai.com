@@ -434,7 +434,7 @@ export default function GeoSeoController() {
     // 7. Auto-Translation Feature trigger
     let targetLang = 'en';
     if (reg.id === 'bd') {
-      targetLang = 'bn';
+      targetLang = 'en';
     } else if (reg.id === 'eu') {
       const locale = navigator.language.substring(0, 2).toLowerCase();
       if (['de', 'fr', 'es', 'it', 'nl', 'pl'].includes(locale)) {

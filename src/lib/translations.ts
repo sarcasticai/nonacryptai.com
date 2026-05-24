@@ -250,6 +250,7 @@ export const translations: Record<string, TranslationDict> = {
 };
 
 export function getTranslation(regionId: string, key: keyof TranslationDict): string {
-  const dict = translations[regionId] || translations.us;
+  const activeRegion = regionId === 'bd' ? 'us' : regionId;
+  const dict = translations[activeRegion] || translations.us;
   return dict[key] || translations.us[key] || "";
 }

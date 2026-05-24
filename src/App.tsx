@@ -12,7 +12,6 @@ import Careers from './pages/Careers';
 import Partners from './pages/Partners';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
-import Security from './pages/Security';
 import Status from './pages/Status';
 import Safety from './pages/Safety';
 import Sla from './pages/Sla';
@@ -45,7 +44,6 @@ export default function App() {
             <Route path="partners" element={<Partners />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />
-            <Route path="security" element={<Security />} />
             <Route path="safety" element={<Safety />} />
             <Route path="sla" element={<Sla />} />
             <Route path="status" element={<Status />} />

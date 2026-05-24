@@ -68,13 +68,6 @@ const PAGE_METADATA: Record<string, PageSEOConfig> = {
     ogTitle: 'NonaCrypt Sovereign Spatial & Vision Systems',
     ogDescription: 'Deploy radiation-hardened or ruggedized vision algorithms directly on edge accelerators.'
   },
-  '/security': {
-    title: 'Sovereign VPC Networks, Zero-Leaking Policies & Keys',
-    description: 'Industry-standard ISO/SOC2 compliant frameworks with isolated AWS/Azure/GCP tunnel peering, FIPS HSM keys, and GDPR compliant sovereign airgaps.',
-    keywords: 'vpc peering ai, sovereign cloud, zero leaking model policy, hsm cryptography client key, secure isolated gpus',
-    ogTitle: 'Enterprise Cryptography & Airgap Security',
-    ogDescription: 'Complete compliance assurance. Your data is isolated and never used for basic training loops.'
-  },
   '/about': {
     title: 'The PhDs, Researchers & Engineers Behind the Mission',
     description: 'Founded by senior AI scientists dedicated to executing complex, safe, high-consequence calculations for global scale enterprises.',

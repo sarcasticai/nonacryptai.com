@@ -8,6 +8,106 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { getTranslation } from '../lib/translations';
 
+interface RegionHubDetail {
+  id: string;
+  name: string;
+  flag: string;
+  headline: string;
+  description: string;
+  uptime: string;
+  latencyAvg: string;
+  activeNodes: number;
+  compliance: string[];
+  datacenterSpeed: string;
+  anchorLocation: string;
+  accentClass: string;
+  bgGlowClass: string;
+  allocationPercent: number;
+}
+
+const REGION_INFO_MAP: Record<string, RegionHubDetail> = {
+  us: {
+    id: "us",
+    name: "United States Hub",
+    flag: "🇺🇸",
+    headline: "Federal-Grade Airgapped Sovereignty",
+    description: "Highly redundant computing clusters engineered for low-latency financial systems and ITAR defense compliance guidelines across North America.",
+    uptime: "99.9997%",
+    latencyAvg: "4.8ms",
+    activeNodes: 1024,
+    compliance: ["SOC 2 Type II", "HIPAA", "ITAR Category XV"],
+    datacenterSpeed: "22.4 PetaFLOPs/sec",
+    anchorLocation: "Ashburn, VA",
+    accentClass: "from-blue-500 to-indigo-600 bg-blue-500/10 border-blue-500/30 text-blue-400",
+    bgGlowClass: "from-blue-600/10 via-indigo-600/5 to-transparent",
+    allocationPercent: 84
+  },
+  bd: {
+    id: "bd",
+    name: "Bangladesh Hub",
+    flag: "🇧🇩",
+    headline: "Highly Optimized Regional Edge Hub",
+    description: "Serving high-speed local inference endpoints optimized for Dhaka tech corridors with local English/Bangla-ready sovereign enclaves.",
+    uptime: "99.9920%",
+    latencyAvg: "18.2ms",
+    activeNodes: 128,
+    compliance: ["BDS-2024 Sovereignty Guidance", "ISO 27001 Keyed", "GDPR Guarded"],
+    datacenterSpeed: "2.8 PetaFLOPs/sec",
+    anchorLocation: "Dhaka (Tejgaon Core)",
+    accentClass: "from-emerald-500 to-teal-600 bg-emerald-500/10 border-emerald-500/30 text-emerald-400",
+    bgGlowClass: "from-emerald-600/10 via-teal-600/5 to-transparent",
+    allocationPercent: 43
+  },
+  ca: {
+    id: "ca",
+    name: "Canada Hub",
+    flag: "🇨🇦",
+    headline: "PIPEDA-Compliant Public Infrastructure",
+    description: "Hydro-powered computing facilities protecting Canadian databases and public records safely within high-integrity local enclaves.",
+    uptime: "99.9989%",
+    latencyAvg: "11.6ms",
+    activeNodes: 384,
+    compliance: ["PIPEDA Compliant", "SOC 2 Type II", "Sovereign RCIP"],
+    datacenterSpeed: "8.4 PetaFLOPs/sec",
+    anchorLocation: "Montreal, QC",
+    accentClass: "from-red-500 to-rose-600 bg-red-500/10 border-red-500/30 text-red-400",
+    bgGlowClass: "from-red-600/10 via-rose-600/5 to-transparent",
+    allocationPercent: 61
+  },
+  au: {
+    id: "au",
+    name: "Australia Hub",
+    flag: "🇦🇺",
+    headline: "IRAP-Aligned Defence Cloud Clusters",
+    description: "Sovereign computational infrastructure crafted to satisfy rigorous on-shore data policies and local privacy framework criteria.",
+    uptime: "99.9991%",
+    latencyAvg: "14.5ms",
+    activeNodes: 256,
+    compliance: ["IRAP Aligned", "APP Compliant", "ISO 27018 Data Protect"],
+    datacenterSpeed: "5.6 PetaFLOPs/sec",
+    anchorLocation: "Sydney, NSW",
+    accentClass: "from-amber-500 to-orange-600 bg-amber-500/10 border-amber-500/30 text-amber-400",
+    bgGlowClass: "from-amber-600/10 via-orange-600/5 to-transparent",
+    allocationPercent: 52
+  },
+  eu: {
+    id: "eu",
+    name: "European Union Hub",
+    flag: "🇪🇺",
+    headline: "GDPR & EU AI Act Absolute Boundary",
+    description: "Fully certified sovereign nodes ensuring model weights, pipeline parameters, and transactional telemetry remain strictly inside European borders.",
+    uptime: "99.9998%",
+    latencyAvg: "7.1ms",
+    activeNodes: 896,
+    compliance: ["Strict GDPR Resident", "EU AI Act Ready", "BSI C5 Attested"],
+    datacenterSpeed: "19.8 PetaFLOPs/sec",
+    anchorLocation: "Frankfurt, DE",
+    accentClass: "from-indigo-500 to-violet-600 bg-indigo-500/10 border-indigo-500/30 text-indigo-400",
+    bgGlowClass: "from-indigo-600/10 via-violet-600/5 to-transparent",
+    allocationPercent: 78
+  }
+};
+
 export default function Home() {
   // Region synchronization
   const [regionId, setRegionId] = useState(() => {
@@ -43,6 +143,24 @@ export default function Home() {
     }, 3000);
     return () => clearInterval(timer);
   }, []);
+
+  const activeHub = REGION_INFO_MAP[regionId] || REGION_INFO_MAP.us;
+  const [allocationLoad, setAllocationLoad] = useState(activeHub.allocationPercent);
+  
+  useEffect(() => {
+    setAllocationLoad(activeHub.allocationPercent);
+  }, [regionId, activeHub.allocationPercent]);
+
+  const handleHubSwitch = (id: string) => {
+    setRegionId(id);
+    try {
+      localStorage.setItem('nonacrypt-selected-region', id);
+    } catch (err) {
+      console.error(err);
+    }
+    const event = new CustomEvent('nonacrypt-region-changed', { detail: { id } });
+    window.dispatchEvent(event);
+  };
 
   return (
     <div className="flex flex-col bg-[#0A0A0A] w-full min-h-screen relative font-sans overflow-x-hidden animate-fade-in" id="home_root_page">
@@ -406,6 +524,191 @@ export default function Home() {
             <div className="flex items-center gap-2"><div className="w-5 h-2.5 border-2 border-white rounded-lg"></div><span className="text-xs font-extrabold font-mono text-white tracking-widest">SYNTH_AI</span></div>
             <div className="flex items-center gap-2"><div className="w-5 h-2.5 rounded-full bg-white"></div><span className="text-xs font-extrabold font-mono text-white tracking-widest">VANGUARD</span></div>
             <div className="flex items-center gap-2"><div className="w-5 h-5 border border-dashed border-white rounded-full"></div><span className="text-xs font-extrabold font-mono text-white tracking-widest">SaaS_ENCLAVE</span></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Highly Designed Adaptive Multi-Hub Status & Telemetry Banner */}
+      <section className="py-24 bg-[#080809] border-b border-slate-900 relative z-10 overflow-hidden" id="homepage_adaptive_hub_banner_section">
+        {/* Glow Effects */}
+        <div className={`absolute -bottom-24 -left-20 w-80 h-80 bg-gradient-to-tr ${activeHub.id === 'us' ? 'from-blue-600/10' : activeHub.id === 'bd' ? 'from-emerald-600/10' : activeHub.id === 'ca' ? 'from-red-600/10' : activeHub.id === 'au' ? 'from-amber-600/10' : 'from-indigo-600/10'} blur-[100px] rounded-full pointer-events-none`}></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293702_1px,transparent_1px),linear-gradient(to_bottom,#1f293702_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none opacity-20"></div>
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center md:text-left max-w-4xl mb-12">
+            <span className="text-[10px] font-mono font-black text-indigo-400 uppercase tracking-[0.25em] bg-indigo-500/5 px-4 py-2 rounded-full border border-indigo-500/15 inline-block">
+              HYBRID ENTERPRISE INTEL CONNECTIVITY
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mt-4 leading-tight">
+              Adaptive Sovereign Computing Hubs
+            </h2>
+            <p className="text-slate-400 mt-3 text-sm sm:text-base font-semibold max-w-2xl">
+              NonaCrypt's system adapts its computational pathways depending on your jurisdiction. Select a sovereign node below to inspect real-time localized compliance matrices, datacenter capacity, and latency baselines.
+            </p>
+          </div>
+
+          {/* Interactive Core Banner Card */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch" id="adaptive_status_panel_inner">
+            
+            {/* LEFT SIDE: Dynamic Node Insights */}
+            <div className="lg:col-span-7 bg-slate-950/60 border border-slate-900/90 rounded-3xl p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
+              
+              {/* Dynamic glow corner */}
+              <div className={`absolute top-0 right-0 w-44 h-44 bg-gradient-to-bl ${activeHub.id === 'us' ? 'from-blue-600/5' : activeHub.id === 'bd' ? 'from-emerald-600/5' : activeHub.id === 'ca' ? 'from-red-600/5' : activeHub.id === 'au' ? 'from-amber-600/5' : 'from-indigo-600/5'} to-transparent blur-2xl pointer-events-none rounded-full`}></div>
+
+              <div>
+                <div className="flex items-center gap-3.5 mb-6">
+                  <span className="text-3xl filter drop-shadow select-none">{activeHub.flag}</span>
+                  <div>
+                    <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase block font-bold">SOVEREIGN NETWORK GATEWAY</span>
+                    <h3 className="text-lg font-black text-white flex items-center gap-2 font-mono">
+                      {activeHub.name}
+                      <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="space-y-4 mb-8">
+                  <h4 className="text-xl md:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300 tracking-tight leading-snug">
+                    {activeHub.headline}
+                  </h4>
+                  <p className="text-sm text-slate-400 font-semibold leading-relaxed">
+                    {activeHub.description}
+                  </p>
+                </div>
+
+                {/* Localized Grid Metrics */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 p-5 rounded-2xl border border-slate-900/60 bg-slate-950/40 mb-8">
+                  <div>
+                    <span className="text-[9px] font-mono tracking-widest text-[#a5d6ff]/60 uppercase block font-black">Node Connection</span>
+                    <span className="text-sm font-bold font-mono text-white flex items-center gap-1.5 mt-1">
+                      <Activity className="h-3.5 w-3.5 text-blue-400 animate-pulse shrink-0" />
+                      {activeHub.latencyAvg} avg
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono tracking-widest text-[#a5d6ff]/60 uppercase block font-black">Cluster Hardware</span>
+                    <span className="text-sm font-bold font-mono text-white flex items-center gap-1.5 mt-1">
+                      <Cpu className="h-3.5 w-3.5 text-indigo-400 shrink-0" />
+                      {activeHub.activeNodes} Units
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono tracking-widest text-[#a5d6ff]/60 uppercase block font-black">Uptime SLA</span>
+                    <span className="text-sm font-bold font-mono text-white flex items-center gap-1.5 mt-1">
+                      <Shield className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                      {activeHub.uptime}
+                    </span>
+                  </div>
+                  <div className="col-span-2 sm:col-span-3 pt-3 border-t border-slate-900/60 mt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <span className="text-[9px] font-mono tracking-widest text-slate-500 uppercase block font-black">Total Computational Capacity</span>
+                    <span className="text-xs font-mono font-bold text-white uppercase bg-slate-900/80 px-2.5 py-1 rounded-md border border-slate-800">
+                      ⚡ {activeHub.datacenterSpeed}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Compliance Badges with Shields */}
+              <div>
+                <span className="text-[9px] font-mono tracking-widest text-slate-500 uppercase block font-black mb-3">ACTIVE SOVEREIGN COMPLIANCE SUITE</span>
+                <div className="flex flex-wrap gap-2.5">
+                  {activeHub.compliance.map((cert) => (
+                    <div 
+                      key={cert} 
+                      className="inline-flex items-center gap-2 rounded-xl bg-slate-900/80 border border-slate-800/80 px-3.5 py-2 text-xs font-bold text-slate-300 font-mono shadow-sm hover:border-indigo-500/20 transition-all cursor-default select-none animate-fade-in"
+                    >
+                      <ShieldCheck className="h-3.5 w-3.5 text-indigo-400 shrink-0" />
+                      {cert}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            {/* RIGHT SIDE: Interactive Controller Node Allocator */}
+            <div className="lg:col-span-5 bg-gradient-to-b from-[#0e0e11] to-[#0a0a0c] border border-slate-900/90 rounded-3xl p-8 lg:p-10 flex flex-col justify-between backdrop-blur-md relative overflow-hidden">
+              <div>
+                <div className="mb-6">
+                  <span className="text-[10px] font-mono tracking-widest text-indigo-400 uppercase block font-black">ACTIVE ROUTING PATHWAY</span>
+                  <h3 className="text-xl font-bold text-white tracking-tight mt-1">
+                    Toggle Sovereign Hubs
+                  </h3>
+                  <p className="text-xs text-slate-500 font-semibold leading-relaxed mt-1">
+                    Simulate real-time network latency, legal jurisdiction boundaries, and power allocations instantly.
+                  </p>
+                </div>
+
+                {/* Hub Buttons Stack with Hover Effects */}
+                <div className="space-y-3 mb-8" id="adaptive_toggle_stack">
+                  {Object.values(REGION_INFO_MAP).map((hub) => {
+                    const isActive = hub.id === activeHub.id;
+                    return (
+                      <button
+                        key={hub.id}
+                        onClick={() => handleHubSwitch(hub.id)}
+                        className={`w-full flex items-center justify-between p-4 rounded-2xl border text-left cursor-pointer transition-all ${
+                          isActive 
+                            ? 'bg-slate-900/80 border-indigo-500/40 shadow-lg shadow-indigo-950/20 text-white' 
+                            : 'bg-slate-950/20 border-slate-900 hover:bg-slate-950/40 hover:border-slate-800/80 text-slate-400'
+                        }`}
+                        id={`switch_hub_btn_${hub.id}`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="text-2xl filter drop-shadow shrink-0 select-none">{hub.flag}</span>
+                          <div>
+                            <span className="text-xs font-bold text-white block">{hub.name}</span>
+                            <span className="text-[9px] font-mono text-slate-500 block uppercase font-bold mt-0.5">{hub.anchorLocation}</span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 font-mono text-[10px] font-bold">
+                          <span className="text-slate-500">PING:</span>
+                          <span className={isActive ? "text-emerald-400 animate-pulse" : "text-slate-400"}>
+                            {hub.latencyAvg}
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Load Capacity Bar Visualization */}
+                <div className="p-5 rounded-2xl border border-slate-900 bg-slate-950/30">
+                  <div className="flex items-center justify-between text-xs font-mono font-bold mb-2">
+                    <span className="text-slate-500">COGNITIVE COMPUTE ALLOCATION</span>
+                    <span className="text-[#a5d6ff]">{allocationLoad}% CAPACITY</span>
+                  </div>
+                  {/* Outer Bar */}
+                  <div className="h-2 w-full bg-slate-900 rounded-full overflow-hidden border border-slate-800">
+                    {/* Inner Fluid Bar */}
+                    <motion.div 
+                      className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${allocationLoad}%` }}
+                      transition={{ type: "spring", stiffness: 60, damping: 12 }}
+                    />
+                  </div>
+                  <span className="text-[9px] font-mono font-bold text-slate-600 block mt-2 text-right">
+                    PROVISIONED BY REAL-TIME ISO/IEC 42001 SCHEDULERS
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-slate-900/60">
+                <Link
+                  to="/contact"
+                  id="dynamic_enclave_alliance_cta"
+                  className="w-full h-12 inline-flex items-center justify-center rounded-xl bg-white text-slate-950 font-bold hover:bg-slate-200 hover:shadow-lg hover:shadow-indigo-500/5 transition-all text-sm group"
+                >
+                  Acquire Local SLA and Hardware Locks
+                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </section>

@@ -611,7 +611,14 @@ export default function Industries() {
           </div>
 
           {/* Active Sector Display HUD (8 Columns) */}
-          <div className="lg:col-span-8 p-8 sm:p-10 rounded-3xl border border-slate-900/90 bg-slate-950/30 backdrop-blur-md relative overflow-hidden" id="active_sector_hud_display">
+          <motion.div 
+            key={activeSector}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-8 p-8 sm:p-10 rounded-3xl border border-slate-900/90 bg-slate-950/30 backdrop-blur-md relative overflow-hidden" 
+            id="active_sector_hud_display"
+          >
             {/* Visual gradient backdrop based on active item */}
             <div className={`absolute top-0 right-0 w-80 h-80 bg-gradient-to-b ${selectedSector.gradient} blur-3xl pointer-events-none rounded-full`}></div>
 
@@ -717,7 +724,7 @@ export default function Industries() {
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </section>
