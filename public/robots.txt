@@ -1,0 +1,15 @@
+# www.robotstxt.org/
+# NonaCrypt AI Sovereign Platform - Production Crawler Directives
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /telemetry/
+Disallow: /ws/
+
+# Host configuration
+Host: https://nonacrypt.ai
+
+# Sitemap configuration
+Sitemap: https://nonacrypt.ai/sitemap.xml
